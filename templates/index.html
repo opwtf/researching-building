@@ -1,0 +1,98 @@
+
+<!doctype html>
+<style>
+form{
+margin: left;
+width:20%
+}
+
+.result{
+margin:auto;
+width:35%
+border:1px solid #ccc;
+}
+ ul.hr {
+    /* Обнуляем значение отступов и полей */
+    margin: 0; padding: 0;
+   }
+form { margin-top:15px;margin-left: 40px;float: left;}
+span{float: left;}
+text1{font-size:20px;margin-top:10px;margin-bottom:15px;}
+
+
+
+</style>
+<head>
+    <title>Прогнозирование  целевых переменных</title>
+</head>
+<div  style="font-size:20px">Если необходимо сделать прогноз для "Соотношение матрица-наполнитель", то в поле с этим названием ставим "0"<br>
+    Eсли необходимо сделать прогноз для  "Модуль упругости при растяжении, ГПа" и "Прочность при растяжении, МПа" эти поля заполняем "0" <br>
+    В случае заполнения всех ячеек, будет выполнен прогноз для всех величин<br>
+    Перед заполнением проверяйте единицы измерения!!!
+</div>
+
+<form action="{{url_for('main')}}", method="POST">
+    <fieldset>
+        <h2>Прогнозирование величин<br>  </h2>
+        <h3>Введите значения</h3><br>
+        <p style="margin-top: 3px">
+            <span>Соотношение матрица-наполнитель</span><input name="Соотношение матрица-наполнитель" type="number" step="any"  placeholder="1.85" required><br></p>
+        <span>Плотность, кг/м3</span><input name="Плотность, кг/м3" type="number" step="any" placeholder="2030.0"  required><br>
+        <span>модуль упругости, ГПа</span><input name="модуль упругости, ГПа" type="number" step="any"  placeholder="738.73" required><br>
+        <span>Количество отвердителя, м.%</span><input name="Количество отвердителя, м.%" type="number" step="any"  placeholder="30.00"  required><br>
+        <span>Содержание эпоксидных групп,%_2</span><input name="Содержание эпоксидных групп,%_2" type="number" step="any" placeholder="22.267"   required><br>
+        <span>Температура вспышки, С_2</span><input name="Температура вспышки, С_2" type="number" step="any"    placeholder="100.0" required><br>
+        <span>Поверхностная плотность, г/м2</span><input name="Поверхностная плотность, г/м2" type="number" step="any" placeholder="210.0"  required><br>
+        <span>Потребление смолы, г/м2</span><input name="Потребление смолы, г/м2" type="number" step="any" placeholder="70.0"  required><br>
+        <span>Модуль упругости при растяжении, ГПа</span><input name="Модуль упругости при растяжении, ГПа" type="number" step="any" placeholder="3000.0"  required><br>
+        <span>Прочность при растяжении, МПа</span><input name="Прочность при растяжении, МПа" type="number" step="any" placeholder="220.0"  required><br>
+        <span>Угол нашивки, град</span><input name="Угол нашивки, град" type="number" step="any" placeholder="0"  required><br>
+        <span style="margin-left:40px">Шаг нашивки </span><input name="Шаг нашивки" type="number" step="any" placeholder="4.0"  required><br>
+        <span>Плотность нашивки</span><input name="Плотность нашивки" type="number" step="any"  placeholder="57.0" required><br>
+
+        <br>
+        <input type="submit">
+
+    </fieldset>
+</form>
+
+
+
+
+
+
+<div class="result",algin="right">
+    {% if result %}
+    <br>
+    <p style="font-size:50px">
+
+        Модуль упругости при растяжении, ГПа
+    </p>
+    <p style="font-size:15px">
+        Прогнозное значение: {{result}}</p>
+
+    {% endif%}
+</div>
+<div class="result1",algin="right">
+    {% if result %}
+    <br>
+    <p style="font-size:50px">
+       Прочность при растяжении, МПа
+    </p>
+
+    <p style="font-size:15px">
+        Прогнозное значение: {{result1}}</p>
+    {% endif%}
+</div>
+<div class="result2",algin="right">
+    {% if result %}
+    <br>
+    <p style="font-size:50px">
+
+        Соотношение матрица-наполнитель
+    </p>
+
+    <p style="font-size:15px">
+        Прогнозное значение: {{result2}}</p>
+    {% endif%}
+</div>
